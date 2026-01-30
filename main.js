@@ -1,8 +1,3 @@
-const logLowerCase = (object) => {
-  object.forEach((item) => {
-    item.toLowerCase();
-    console.log("Item: " + item);
-  });
-};
+import { makeHello } from "./utils/makeHello.js";
 
-logLowerCase(["1", "2", "3"]);
+console.log(makeHello("Bun"));

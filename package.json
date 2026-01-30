@@ -1,0 +1,13 @@
+{
+  "name": "nodejs",
+  "scripts": {
+    "dev": "bun --watch main.js",
+    "build": "bun build main.js"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.13",
+    "@types/bun": "latest"
+  },
+  "private": true,
+  "type": "module"
+}
