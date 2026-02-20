@@ -1,46 +1,14 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.3.13/schema.json",
-	"vcs": {
-		"enabled": true,
-		"clientKind": "git",
-		"useIgnoreFile": true
-	},
-	"files": {
-		"ignoreUnknown": false
-	},
-	"formatter": {
-		"enabled": true,
-		"indentStyle": "tab",
-		"includes": ["**/*.js"]
-	},
-	"linter": {
-		"enabled": true,
-		"includes": ["**/*.js"],
-		"rules": {
-			"recommended": true,
-			"style": "info",
-			"complexity": "warn",
-			"performance": "info",
-			"security": "warn",
-			"correctness": "error",
-			"suspicious": {
-				"noConsole": "off"
-			},
-			"nursery": "info"
-		}
-	},
-	"javascript": {
-		"formatter": {
-			"quoteStyle": "double",
-			"expand": "always"
-		}
-	},
-	"assist": {
-		"enabled": true,
-		"actions": {
-			"source": {
-				"organizeImports": "on"
-			}
-		}
-	}
+  "$schema": "https://biomejs.dev/schemas/2.3.13/schema.json",
+  "extends": ["@arthurfiorette/biomejs-config"],
+
+  "formatter": {
+    "enabled": true
+  },
+
+  "json": {
+    "formatter": {
+      "enabled": true
+    }
+  }
 }

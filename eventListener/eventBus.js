@@ -1,30 +1,31 @@
-import { Event } from "./events.js";
-
-let id = 0;
+import { Event } from './events.js';
 
 export function createEvent(event) {
-	const time = Date.now();
-	id += 1;
+  const time = Date.now();
 
-	const data = new Event(id, event, time);
+  const data = new Event(time, event, time);
 
-	if (data.exists()) {
-		throw new Error("Event already exists");
-	}
+  if (data.exists()) {
+    throw new Error('Event already exists');
+  }
 
-	data.set();
+  data.set();
 
-	return data;
+  return data;
 }
 
 export function getEventByEvent(name) {
-	return Event.getEventByEvent(name);
+  return Event.getEventsByEvent(name);
 }
 
 export function getEventByKey(key) {
-	return Event.getEventByKey(key);
+  return Event.getEventByKey(key);
 }
 
 export function getEvents() {
-	return Event.getEvents();
+  return Event.getEvents();
+}
+
+export function saveEvents() {
+  Event.saveEvents();
 }

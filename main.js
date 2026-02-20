@@ -1,3 +1,3 @@
-import { makeHello } from "./utils/makeHello.js";
+import { events } from './eventListener/events.js';
 
-console.log(makeHello("Bun"));
+console.log(events);

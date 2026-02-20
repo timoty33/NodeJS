@@ -1,51 +1,52 @@
-const events = new Map();
+import fs from 'node:fs';
+import path from 'node:path';
+
+const dataPath = path.resolve('./data.json');
+const rawData = fs.readFileSync(dataPath, 'utf-8');
+
+const data = JSON.parse(rawData);
+
+// converte objeto -> Map
+export const events = new Map(Object.entries(data));
 
 export class Event {
-	constructor(key, event, time) {
-		this.event = {
-			event,
-			time,
-		};
-		this.key = key;
-	}
+  constructor(key, event, time) {
+    this.key = String(key); // JSON só aceita string como chave
+    this.event = {
+      event,
+      time
+    };
+  }
 
-	static getEvents() {
-		const allEvents = [];
+  static getEvents() {
+    return [...events.entries()].map(([key, value]) => ({
+      key,
+      value
+    }));
+  }
 
-		events.forEach((value, key) => {
-			allEvents.push({
-				value,
-				key,
-			});
-		});
+  static getEventsByEvent(name) {
+    return [...events.entries()]
+      .filter(([, value]) => value.event === name)
+      .map(([key, value]) => ({ key, value }));
+  }
 
-		return allEvents;
-	}
+  static getEventByKey(key) {
+    return events.get(String(key));
+  }
 
-	static getEventByEvent(name) {
-		const eventsByEvent = [];
+  static saveEvents() {
+    // Map → Object
+    const obj = Object.fromEntries(events);
 
-		events.forEach((value, key) => {
-			if (name === value.event) {
-				eventsByEvent.push({
-					value,
-					key,
-				});
-			}
-		});
+    fs.writeFileSync(dataPath, JSON.stringify(obj, null, 2), 'utf-8');
+  }
 
-		return eventsByEvent;
-	}
+  exists() {
+    return events.has(this.key);
+  }
 
-	static getEventByKey(key) {
-		return events.get(key);
-	}
-
-	exists() {
-		return events.has(this.key);
-	}
-
-	set() {
-		events.set(this.key, this.event);
-	}
+  set() {
+    events.set(this.key, this.event);
+  }
 }

@@ -1,28 +1,27 @@
-import {
-	createEvent,
-	getEventByEvent,
-	getEventByKey,
-	getEvents,
-} from "./eventBus.js";
+import { createEvent, getEventByEvent, getEventByKey, getEvents, saveEvents } from './eventBus.js';
 
-const click = "timoty:click";
+try {
+  const click = 'timoty:click';
 
-console.log(createEvent(click));
+  console.log(createEvent(click));
 
-// ===---===---===
+  // ===---===---===
 
-const events = getEvents();
+  const events = getEvents();
 
-console.log(events);
+  console.log(events);
 
-// ===---===---===
+  // ===---===---===
 
-const timotyClick = getEventByEvent();
+  const timotyClick = getEventByEvent('timoty:click');
 
-console.log(timotyClick);
+  console.log(timotyClick);
 
-// ===---===---===
+  // ===---===---===
 
-const timotyClickByKey = getEventByKey;
+  const timotyClickByKey = getEventByKey('0');
 
-console.log(timotyClickByKey);
+  console.log(timotyClickByKey);
+} finally {
+  saveEvents();
+}
